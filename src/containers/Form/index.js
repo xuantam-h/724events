@@ -8,6 +8,8 @@ const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 1000
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
@@ -16,9 +18,11 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
+        setConfirm(true);
       } catch (err) {
         setSending(false);
         onError(err);
+        setConfirm(false);
       }
     },
     [onSuccess, onError]
@@ -40,6 +44,15 @@ const Form = ({ onSuccess, onError }) => {
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
           </Button>
+          {confirm && 
+            <div className="ModalMessage--success">
+              <div>Message envoyé !</div>
+              <p>
+                Merci pour votre message nous tâcherons de vous répondre dans
+                les plus brefs délais
+              </p>
+            </div>
+          }
         </div>
         <div className="col">
           <Field

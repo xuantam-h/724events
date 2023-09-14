@@ -121,6 +121,7 @@ const Page = () => {
         <h3>Notre dernière prestation</h3>
         <EventCard
           imageSrc={last?.cover}
+          imageAlt={last?.title}
           title={last?.title}
           date={new Date(last?.date)}
           small

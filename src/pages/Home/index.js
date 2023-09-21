@@ -96,8 +96,18 @@ const Page = () => {
       </section>
       <div className="FormContainer" id="contact">
         <h2 className="Title">Contact</h2>
-        
-        <Modal>
+        <Modal
+          Content={
+            <div className="ModalMessage--success">
+              <div>Message envoyé !</div>
+              <p>
+                Merci pour votre message nous tâcherons de vous répondre dans
+                les plus brefs délais
+              </p>
+            </div>
+          }
+        >
+          
           {({ setIsOpened }) => (
             <Form
               onSuccess={() => setIsOpened(true)}

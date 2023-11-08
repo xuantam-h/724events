@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Home from "./index";
+import PeopleCard from "../../components/PeopleCard";
 
 describe("When Form is created", () => {
   it("a list of fields card is displayed", async () => {
@@ -33,7 +34,16 @@ describe("When a page is created", () => {
     // to implement
   })
   it("a list a people is displayed", () => {
-    // to implement
+    render(
+      <PeopleCard imageSrc="http://src-image" imageAlt="image-alt-text" position="test position" name="test name" />
+    );
+    const imageElement = screen.getByTestId("card-image-testid");
+    const nameElement = screen.getByText(/test name/);
+    const titleElement = screen.getByText(/test position/);
+    expect(imageElement).toBeInTheDocument();
+    expect(imageElement.alt).toEqual("image-alt-text");
+    expect(nameElement).toBeInTheDocument();
+    expect(titleElement).toBeInTheDocument();
   })
   it("a footer is displayed", () => {
     // to implement

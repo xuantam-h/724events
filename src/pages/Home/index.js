@@ -15,6 +15,7 @@ import { useData } from "../../contexts/DataContext";
 const Page = () => {
   // Getting the data from the context
   const {data} = useData();
+  
   // Define last event if there is data
   const last = data && data.events && data.events.length > 0 ? data.events[data.events.length - 1] : null;
 

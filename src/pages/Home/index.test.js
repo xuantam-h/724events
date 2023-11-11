@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Home from "./index";
 import PeopleCard from "../../components/PeopleCard";
+import Page from "./index";
 
 describe("When Form is created", () => {
   it("a list of fields card is displayed", async () => {
@@ -31,24 +32,21 @@ describe("When Form is created", () => {
 
 describe("When a page is created", () => {
   it("a list of events is displayed", () => {
-    // to implement
+    render(<Page />);
+    const eventsList = screen.getAllByTestId("eventsList");
+    expect(eventsList).not.toHaveLength(0);
   })
   it("a list a people is displayed", () => {
-    render(
-      <PeopleCard imageSrc="http://src-image" imageAlt="image-alt-text" position="test position" name="test name" />
-    );
-    const imageElement = screen.getByTestId("card-image-testid");
-    const nameElement = screen.getByText(/test name/);
-    const titleElement = screen.getByText(/test position/);
-    expect(imageElement).toBeInTheDocument();
-    expect(imageElement.alt).toEqual("image-alt-text");
-    expect(nameElement).toBeInTheDocument();
-    expect(titleElement).toBeInTheDocument();
+    render(<Page />);
+    const peopleId = screen.getAllByTestId("PeopleCardId");
+    expect(peopleId).toHaveLength(6);
   })
-  it("a footer is displayed", () => {
-    // to implement
+  it("a footer is displayed", async () => {
+    render(<Page />);
+    const footerContent = await screen.findByText("Notre dernière prestation");
+    expect(footerContent).toHaveTextContent("Notre dernière prestation");
   })
-  it("an event card, with the last event, is displayed", () => {
-    // to implement
+  it("an event card, with the last event, is displayed", async () => {
+
   })
 });

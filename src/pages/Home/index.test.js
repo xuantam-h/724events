@@ -29,7 +29,6 @@ describe("When Form is created", () => {
 
 });
 
-
 describe("When a page is created", () => {
   it("a list of events is displayed", () => {
     render(<Page />);
@@ -43,10 +42,13 @@ describe("When a page is created", () => {
   })
   it("a footer is displayed", async () => {
     render(<Page />);
-    const footerContent = await screen.findByText("Notre dernière prestation");
-    expect(footerContent).toHaveTextContent("Notre dernière prestation");
+    const Footer = screen.getByTestId("Footer");
+    expect(Footer).toBeInTheDocument();
   })
-  it("an event card, with the last event, is displayed", async () => {
-
+  it("an event card, with the last event, is displayed", () => {
+    render(<Page />);
+    const Footer = screen.getByTestId("Footer");
+    const lastEventCard = Footer.firstChild;
+    expect(lastEventCard).toBeInTheDocument();
   })
 });
